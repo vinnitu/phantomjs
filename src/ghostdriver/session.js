@@ -139,6 +139,16 @@ ghostdriver.Session = function(desiredCapabilities) {
 
                 return proxySettings;
             }
+            else if (proxyCapability["socksProxy"] !== "null") {
+                var urlParts = proxyCapability["socksProxy"].split(':');
+                proxySettings["ip"] = urlParts[0];
+                proxySettings["port"] = urlParts[1];
+                proxySettings["proxyType"] = "socks5";
+                proxySettings["user"] = "";
+                proxySettings["password"] = "";
+
+                return proxySettings;
+            }
         }
         return proxySettings;
     };
